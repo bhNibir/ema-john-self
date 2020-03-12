@@ -1,0 +1,23 @@
+.product-section{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+}
+.product-img{
+    
+}
+.product-details{
+    margin: 10px; 
+    
+}
+
+.product-details h3{
+    color: blue;
+    font-weight: 400;
+    
+}
+.add-cart-btn{
+    background-color: goldenrod;
+    border: 1px solid rgb(141, 102, 4);
+    border-radius: 5px;
+    padding: 5px 40px;
+}
