@@ -16,7 +16,8 @@ const Review = () => {
             return product
         })
         setCart(cartProducts)
-    })
+    },[])
+
     
      
     return (
