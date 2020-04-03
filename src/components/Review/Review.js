@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { getDatabaseCart } from '../../utilities/databaseManager';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import { removeFromDatabaseCart } from '../../utilities/databaseManager';
 
 const Review = () => {
     const [cart, setCart] = useState([])
+
     useEffect(()=>{
         const saveCart = getDatabaseCart()
         const productKeys = Object.keys(saveCart)
-        console.log(productKeys)
+        
         fetch('http://localhost:4200/productReviewByKey',{
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -28,21 +30,24 @@ const Review = () => {
           setCart(cartProducts)
         })
         
-    },[])
+    },[cart])
 
-    
+    const handelRemoveProduct = (key) => {
+        console.log(key)
+        removeFromDatabaseCart(key)
+    }
      
     return (
         <div className="shop-container">
         <div className="products-section">
         {
         cart.map(product => 
-            <ReviewItem product = {product} key = {product.key}></ReviewItem>
+            <ReviewItem product = {product} key = {product.key} handelRemoveProduct={handelRemoveProduct} ></ReviewItem>
             )
          }
         </div>
             <div className="cart-section">
-                {/* <Cart cartItem= {cartItem}></Cart> */}
+            <Cart cartItem= {cart} btnLink={'shipment'} btnText= {'Order Place'}></Cart>
             </div>
         </div>
                

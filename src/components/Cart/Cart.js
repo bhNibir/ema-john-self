@@ -3,7 +3,9 @@ import './Cart.css'
 import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
+    const {btnLink, btnText } = props
     const cartItem = props.cartItem
+    console.log(cartItem)
     const totalPrice = cartItem.reduce(((total, product)=>total+product.price), 0)
     let shipping = 0; 
     const tax = (totalPrice/100)*2
@@ -37,7 +39,7 @@ const Cart = (props) => {
             <p>Shipping & Handling: {shipping} </p>
             <p>Total before tax: {precise(tax)} </p>
             <p>Order Total: {precise(totalPrice+shipping+tax)}</p>
-            <Link to="/review"> <button className="add-cart-btn">View Cart</button> </Link>
+            <Link to={"/"+btnLink}> <button className="add-cart-btn">{btnText}</button> </Link>
         </div>
     );
 };

@@ -15,6 +15,7 @@ const Shop = () => {
         .then(res => res.json())
         .then(data => setProducts(data))
     }, [])
+    
     const handelAddCart = (product)=>{
         const newCartItem = [...cartItem, product]
         setCartItem(newCartItem)
@@ -39,7 +40,7 @@ const Shop = () => {
             }
             </div>
             <div className="cart-section">
-               <Cart cartItem= {cartItem}></Cart>
+               <Cart cartItem= {cartItem} btnLink={'review'} btnText= {'View Cart'}></Cart>
             </div>
         </div>
     );

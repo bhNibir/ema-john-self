@@ -2,10 +2,11 @@ import React from 'react';
 import logo from '../../images/logo.png'
 import './Header.css'
 import { useAuth } from '../Login/useAuth';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const auth = useAuth()
-    console.log(auth.user);
+    console.log(auth);
     
     return (
         <div className="header">
@@ -14,7 +15,13 @@ const Header = () => {
                 <a href="/shop">Shop</a>
                 <a href="/review">Order review</a>
                 <a href="/inventory">Manage Inventory Here</a>
-                <span style={{color: 'yellow'}}>{}</span>
+                {
+                    auth.user && <span style={{color:'yellow'}}>Welcome {auth.user.name}</span>
+                }
+                {
+                    auth.user ? <a href = "/login">Sign out</a>
+                    : <a href = "/login">Sign in</a>
+                }
             </nav>
         </div>
     );
