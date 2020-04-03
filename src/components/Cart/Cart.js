@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Cart = (props) => {
     const {btnLink, btnText } = props
     const cartItem = props.cartItem
-    console.log(cartItem)
+    // console.log(cartItem)
     const totalPrice = cartItem.reduce(((total, product)=>total+product.price), 0)
     let shipping = 0; 
     const tax = (totalPrice/100)*2

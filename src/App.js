@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
@@ -7,7 +6,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Review from './components/Review/Review';
 import Inventory from './components/Inventory/Inventory';
@@ -16,11 +14,11 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import Login from './components/Login/Login';
 import { createContext } from 'react';
 import { AuthContextProvider } from './components/Login/useAuth';
+import Shipment from './components/Shipment/Shipment';
 
 export const UserContext = createContext()
 
 function App() {
-  const user = {name: "Babu", email: "Hello@gmail.com"}
   return (
     <div className="App">
       <AuthContextProvider>
@@ -44,6 +42,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="/shipment">
+              <Shipment></Shipment>
             </Route>
             <Route path="*">
               <NotFound></NotFound>

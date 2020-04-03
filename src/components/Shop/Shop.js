@@ -32,6 +32,7 @@ const Shop = () => {
             {
                 products.map(product => 
                 <Product 
+                    key = {product.key}
                     product={product} 
                     handelAddCart={handelAddCart} 
                     showAddToButton={true}>
