@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabaseCart } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
-import Product from '../Product/Product';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 
@@ -10,12 +8,26 @@ const Review = () => {
     useEffect(()=>{
         const saveCart = getDatabaseCart()
         const productKeys = Object.keys(saveCart)
-        const cartProducts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key)
-            product.quantity = saveCart[key]
-            return product
+        console.log(productKeys)
+        fetch('http://localhost:4200/productReviewByKey',{
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productKeys) // body data type must match "Content-Type" header
+          })
+          .then(res => res.json())
+          .then(data => {
+              console.log("Post Successful", data);
+              const cartProducts = productKeys.map(key => {
+                const product = data.find(pd => pd.key === key)
+                product.quantity = saveCart[key]
+                return product
+              
+          })
+          setCart(cartProducts)
         })
-        setCart(cartProducts)
+        
     },[])
 
     
@@ -25,7 +37,7 @@ const Review = () => {
         <div className="products-section">
         {
         cart.map(product => 
-            <ReviewItem product = {product}></ReviewItem>
+            <ReviewItem product = {product} key = {product.key}></ReviewItem>
             )
          }
         </div>
