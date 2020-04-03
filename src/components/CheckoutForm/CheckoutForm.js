@@ -8,11 +8,12 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
   const stripe = useStripe();
   const elements = useElements();  
   const [paymentError, setPaymentError] = useState(null)
   const [payment, setPayment] = useState(null)
+  const { handelPlaceOrder } = props
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,6 +27,8 @@ const CheckoutForm = () => {
     }
     else{
         setPayment(paymentMethod)
+        const paymentDetails = { paymentID: paymentMethod.id, last4: paymentMethod.card.last4 }
+        handelPlaceOrder(paymentDetails)
         setPaymentError(null)
     }
     console.log(error, paymentMethod)
@@ -45,9 +48,14 @@ const CheckoutForm = () => {
             </Alert>
         }
         {
-            payment &&
+           (payment &&  props.orderID) &&
             <Alert  variant={'success'}>
-                This is a  alert—check it out!
+                <h3>
+                    Thank You For your Order
+                </h3>
+                
+                <p>Your Order id: {props.orderID}</p>
+
             </Alert>
         }
     </form>
