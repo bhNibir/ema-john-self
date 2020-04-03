@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import './Shop.css';
-import fakaData from '../../fakeData/index'
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import { addToDatabaseCart } from '../../utilities/databaseManager';
+import { useEffect } from 'react';
 
 const Shop = () => {
-    const item10 = fakaData.slice(0,10)
-    const [products, setProducts] = useState(item10)
+    const [products, setProducts] = useState([])
 
     const [cartItem, setCartItem] = useState([])
+
+    useEffect(()=> {
+        fetch('http://localhost:4200/products')
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    }, [])
     const handelAddCart = (product)=>{
         const newCartItem = [...cartItem, product]
         setCartItem(newCartItem)
