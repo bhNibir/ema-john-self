@@ -12,7 +12,7 @@ const ProductDetail = () => {
         fetch('http://localhost:4200/product/'+productKey)
         .then(res => res.json())
         .then(data => setProduct(data))
-    }, [])
+    }, [productKey])
     return (
         <div>
             <Product showAddToButton={false}  product={product}></Product>

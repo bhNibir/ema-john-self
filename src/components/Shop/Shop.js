@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 
 const Shop = () => {
     const [products, setProducts] = useState([])
-
     const [cartItem, setCartItem] = useState([])
 
     useEffect(()=> {
@@ -22,8 +21,6 @@ const Shop = () => {
         const productQuantity = newCartItem.filter(pd => pd.key === product.key)
         const count = productQuantity.length
         addToDatabaseCart(product.key, count)
-        console.log(count)
-        
     }
 
     return (

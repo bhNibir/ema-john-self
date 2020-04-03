@@ -15,6 +15,7 @@ import Login from './components/Login/Login';
 import { createContext } from 'react';
 import { AuthContextProvider } from './components/Login/useAuth';
 import Shipment from './components/Shipment/Shipment';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const UserContext = createContext()
 
