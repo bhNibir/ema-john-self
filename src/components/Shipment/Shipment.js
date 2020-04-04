@@ -30,7 +30,7 @@ const Shipment = () => {
             shipment: shipInfoAdded,
             paymentDetails: paymentDetails
         }
-        fetch('http://localhost:4200/placeOrder',{
+        fetch('https://infinite-badlands-59460.herokuapp.com/placeOrder',{
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json'
